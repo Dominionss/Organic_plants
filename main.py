@@ -1,4 +1,46 @@
+import requests
+from tkinter import *
+from PIL import Image, ImageTk
+from io import BytesIO
+from controller import *
 
+window = Tk()
+window.state("zoomed")
+window.iconbitmap("images/earth.ico")
+window.title("Organic plants")
 
+WIDTH, HEIGHT = window.winfo_screenwidth(), window.winfo_screenheight()
+MAP = load_image("images/map.jpg", WIDTH + 5, HEIGHT + 5)
+BUTTON_WIDTH, BUTTON_HEIGHT = 40, 5
 
+mapLabel = Label(window, image=MAP)
+mapLabel.place(x=-5, y=-5)
 
+log_in_user_button = Button(window, text="Log in like User", width=BUTTON_WIDTH, height=BUTTON_HEIGHT)
+log_in_user_button.place(x=650, y=200)
+
+log_in_gardener_button = Button(window, text="Log in like Gardener", width=BUTTON_WIDTH, height=BUTTON_HEIGHT)
+log_in_gardener_button.place(x=650, y=300)
+
+register_button = Button(window, text="Register", width=BUTTON_WIDTH, height=BUTTON_HEIGHT)
+register_button.place(x=650, y=400)
+
+help_button = Button(window, text="Help", width=10, height=2)
+help_button.place(x=10, y=680)
+
+info_button = Button(window, text="Info", width=10, height=2)
+info_button.place(x=10, y=730)
+
+admin_button = Button(window, text="Admin", width=10, height=2)
+admin_button.place(x=1450, y=730)
+
+utils = Utils(log_in_user_button, log_in_gardener_button, register_button, help_button, info_button, admin_button)
+
+log_in_user_button.config(command=utils.log_in_user)
+log_in_gardener_button.config(command=utils.log_in_gardener)
+register_button.config(command=utils.registration)
+help_button.config(command=utils.help)
+info_button.config(command=utils.info)
+admin_button.config(command=utils.log_in_admin)
+
+window.mainloop()
