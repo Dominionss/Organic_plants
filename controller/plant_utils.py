@@ -12,26 +12,41 @@ def load_image(path="", width=0, height=0):
     return image
 
 
+def show(button, all_places):
+    button.place_configure(x=all_places[str(button)]["x"], y=all_places[str(button)]["y"])
+
+
+def hide(button):
+    button.place_configure(x=-500, y=-500)
+
+
+def add_place(places, button, x, y):
+    places[str(button)] = {"x": x, "y": y}
+
+
+def hide_all(buttons):
+    for button in buttons:
+        hide(button)
+
+
 class Utils:
-    def __init__(self, login_user_button, login_gardener_button, register_button, help_button, info_button, admin_button):
+    def __init__(self, login_user_button, login_gardener_button, register_button, help_button, info_button, admin_button, all_places):
         self.login_user_button = login_user_button
         self.login_gardener_button = login_gardener_button
         self.register_button = register_button
         self.help_button = help_button
         self.info_button = info_button
         self.admin_button = admin_button
+        self.all_the_buttons = [login_user_button, login_gardener_button, register_button,
+                                help_button, info_button, admin_button]
 
-    def show(self, button):
-        button.place(x=0, y=0)
-
-    def hide(self, button):
-        button.pack_forget()
+        self.all_places = all_places
 
     def log_in_user(self):
-        pass
+        hide_all(self.all_the_buttons)
 
     def log_in_gardener(self):
-        pass
+        hide_all(self.all_the_buttons)
 
     def registration(self):
         pass
