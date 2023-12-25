@@ -17,7 +17,7 @@ def show(button, all_places):
 
 
 def hide(button):
-    button.place_configure(x=-500, y=-500)
+    button.place_configure(x=4000, y=4000)
 
 
 def add_place(places, button, x, y):
@@ -30,26 +30,34 @@ def hide_all(buttons):
 
 
 class Utils:
-    def __init__(self, login_user_button, login_gardener_button, register_button, help_button, info_button, admin_button, all_places):
+    def __init__(self, login_user_button, login_gardener_button, register_button, help_button, info_button,
+                 admin_button, all_places, enter_username, enter_password, repeat_password):
         self.login_user_button = login_user_button
         self.login_gardener_button = login_gardener_button
         self.register_button = register_button
         self.help_button = help_button
         self.info_button = info_button
         self.admin_button = admin_button
+        self.enter_username = enter_username
+        self.enter_password = enter_password
+        self.repeat_password = repeat_password
         self.all_the_buttons = [login_user_button, login_gardener_button, register_button,
-                                help_button, info_button, admin_button]
+                                help_button, info_button, admin_button, enter_username, enter_password,
+                                repeat_password]
 
         self.all_places = all_places
 
     def log_in_user(self):
         hide_all(self.all_the_buttons)
+        show(self.enter_username, self.all_places)
+        show(self.enter_password, self.all_places)
+        show(self.repeat_password, self.all_places)
 
     def log_in_gardener(self):
         hide_all(self.all_the_buttons)
 
     def registration(self):
-        pass
+        hide_all(self.all_the_buttons)
 
     def help(self):
         pass
@@ -58,5 +66,5 @@ class Utils:
         pass
 
     def log_in_admin(self):
-        pass
+        hide_all(self.all_the_buttons)
 
