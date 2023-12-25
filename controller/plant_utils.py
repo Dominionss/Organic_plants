@@ -31,7 +31,7 @@ def hide_all(buttons):
 
 class Utils:
     def __init__(self, login_user_button, login_gardener_button, register_button, help_button, info_button,
-                 admin_button, all_places, enter_username, enter_password, repeat_password):
+                 admin_button, all_places, enter_username, enter_password, repeat_password, back_button):
         self.login_user_button = login_user_button
         self.login_gardener_button = login_gardener_button
         self.register_button = register_button
@@ -41,23 +41,42 @@ class Utils:
         self.enter_username = enter_username
         self.enter_password = enter_password
         self.repeat_password = repeat_password
+        self.back_button = back_button
         self.all_the_buttons = [login_user_button, login_gardener_button, register_button,
                                 help_button, info_button, admin_button, enter_username, enter_password,
-                                repeat_password]
+                                repeat_password, back_button]
 
         self.all_places = all_places
+        self.state = "main"
+        self.previous_state = self.state
+
+    def change_state(self, state):
+        self.previous_state = state
+        self.state = state
+        if state == "main":
+            hide_all(self.all_the_buttons)
+            show(self.login_user_button, self.all_places)
+            show(self.login_gardener_button, self.all_places)
+            show(self.register_button, self.all_places)
+            show(self.help_button, self.all_places)
+            show(self.info_button, self.all_places)
+            show(self.admin_button, self.all_places)
+        elif state == "user log" or "gardener log":
+            hide_all(self.all_the_buttons)
+            show(self.enter_username, self.all_places)
+            show(self.enter_password, self.all_places)
 
     def log_in_user(self):
+        self.change_state("user log")
+
+    def log_in_gardener(self):
+        self.change_state("gardener log")
+
+    def registration(self):
         hide_all(self.all_the_buttons)
         show(self.enter_username, self.all_places)
         show(self.enter_password, self.all_places)
         show(self.repeat_password, self.all_places)
-
-    def log_in_gardener(self):
-        hide_all(self.all_the_buttons)
-
-    def registration(self):
-        hide_all(self.all_the_buttons)
 
     def help(self):
         pass
