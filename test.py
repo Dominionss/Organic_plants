@@ -1,21 +1,16 @@
-from tkinter import Tk, Button
+from tkinter import Tk, Button, PhotoImage
 
-def move_button():
-    new_x = 100  # Новая координата x
-    new_y = 150  # Новая координата y
-    button.place_configure(x=new_x, y=new_y)
+def on_button_click():
+    print("Кнопка с изображением нажата!")
 
 root = Tk()
 
-# Создаем кнопку
-button = Button(root, text="Переместить кнопку")
+# Загружаем изображение
+image = PhotoImage(file="images/back.png")
 
-# Размещаем кнопку с начальными координатами
-button.place(x=50, y=50)
-
-# Создаем кнопку для изменения положения
-move_button_button = Button(root, text="Изменить положение", command=move_button)
-move_button_button.pack()
+# Создаем кнопку с изображением
+image_button = Button(root, image=image, command=on_button_click)
+image_button.place(x=0, y=0)
 
 root.mainloop()
 

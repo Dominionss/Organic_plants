@@ -50,11 +50,15 @@ class Utils:
         self.state = "main"
         self.previous_state = self.state
 
+    def back(self):
+        self.state = self.previous_state
+        self.change_state(self.state)
+
     def change_state(self, state):
-        self.previous_state = state
         self.state = state
         if state == "main":
             hide_all(self.all_the_buttons)
+            show(self.back_button, self.all_places)
             show(self.login_user_button, self.all_places)
             show(self.login_gardener_button, self.all_places)
             show(self.register_button, self.all_places)
@@ -63,20 +67,26 @@ class Utils:
             show(self.admin_button, self.all_places)
         elif state == "user log" or "gardener log":
             hide_all(self.all_the_buttons)
+            show(self.back_button, self.all_places)
             show(self.enter_username, self.all_places)
             show(self.enter_password, self.all_places)
+        elif state == "registration":
+            hide_all(self.all_the_buttons)
+            show(self.enter_username, self.all_places)
+            show(self.enter_password, self.all_places)
+            show(self.repeat_password, self.all_places)
 
     def log_in_user(self):
+        self.previous_state = self.state
         self.change_state("user log")
 
     def log_in_gardener(self):
+        self.previous_state = self.state
         self.change_state("gardener log")
 
     def registration(self):
-        hide_all(self.all_the_buttons)
-        show(self.enter_username, self.all_places)
-        show(self.enter_password, self.all_places)
-        show(self.repeat_password, self.all_places)
+        self.previous_state = self.state
+        self.change_state("registration")
 
     def help(self):
         pass

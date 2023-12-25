@@ -11,6 +11,7 @@ window.title("Organic plants")
 
 WIDTH, HEIGHT = window.winfo_screenwidth(), window.winfo_screenheight()
 MAP = load_image("images/map.jpg", WIDTH + 5, HEIGHT + 5)
+BACK = load_image("images/back.png", 32, 32)
 BUTTON_WIDTH, BUTTON_HEIGHT = 40, 5
 ALL_PLACES = {}
 
@@ -53,9 +54,9 @@ repeat_password = Entry(window, width=30, font=("Arial", 24, "bold"), show="*")
 repeat_password.place(x=4000, y=4000)
 add_place(ALL_PLACES, repeat_password, 500, 400)
 
-back_button = Button(window, width=10, height=2, image=)
-back_button.place(x=1450, y=730)
-add_place(ALL_PLACES, back_button, 1450, 730)
+back_button = Button(window, image=BACK, width=64, height=32)
+back_button.place(x=10, y=10)
+add_place(ALL_PLACES, back_button, 10, 10)
 
 utils = Utils(log_in_user_button, log_in_gardener_button, register_button, help_button, info_button,
               admin_button, ALL_PLACES, enter_username, enter_password, repeat_password, back_button)
@@ -66,5 +67,6 @@ register_button.config(command=utils.registration)
 help_button.config(command=utils.help)
 info_button.config(command=utils.info)
 admin_button.config(command=utils.log_in_admin)
+back_button.config(command=utils.back)
 
 window.mainloop()
